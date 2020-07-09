@@ -1,0 +1,862 @@
+<!--
+<?php
+print <<<EOT
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="小米官网直营小米公司旗下所有产品，包括小米手机系列小米10 Pro 、小米9、小米MIX Alpha，Redmi 红米系列Redmi K30、Redmi Note 8 Pro，小米电视、笔记本、米家智能家居等，同时提供小米客户服务及售后支持.">
+        <meta name="viewport">
+        <title>
+            $title
+        </title>
+
+        <link rel="stylesheet" href="plugin/layui/css/layui.css">
+        <link rel="stylesheet" href="plugin/swiper.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="plugin/layui/layui.js"></script>
+        <link rel="stylesheet" href="plugin/font-awesome-4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <!--   头部    -->
+        <div class="header">
+            <!--   顶部导航条    -->
+            <div class="site-topbar">
+                <div class="layui-main" style="display: flex;justify-content: space-between;">
+                    <div class="topbar-nav">
+
+<!--
+EOT;
+foreach($array as $key=>$rs){
+print <<<EOT
+-->
+
+
+                        <a href="">$rs</a>
+                        <span>|</span>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+                        <a href="" class="sam">下载app
+                            <span class="appcode">
+                                <img src="//i1.mifile.cn/f/i/17/appdownload/download.png?1" alt="" width="90" height="90">
+                                <p style="margin-top: 10px">小米商城app</p>
+                            </span>
+                        </a>
+                        <span>|</span>
+                        <a href="">Select Location</a>
+                    </div>
+                    <div style="display: flex;">
+                        <div>
+                            <a href="">登录</a>
+                            <span>|</span>
+                            <a href="">注册</a>
+                            <span>|</span>
+                            <a href="">消息通知</a>
+                        </div>
+                        <div class="cart">
+                            <img src="img/cart.png" alt="" width="20" height="15" style="margin-top: -2px">
+                            <p style="margin-left: 5px">购物车(0)</p>
+
+                            <div>
+                                <p>购物车还没有物品，赶紧选购吧</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--   商品词条   -->
+            <div class="site-header">
+                <div class="layui-main">
+                    <div class="mi-logo">
+                        <div><img src="img/mi-logo2.png" alt="" width="30" height="30"></div>
+                        <div><img src="img/mi-logo.png" alt="" width="30" height="30"></div>
+                    </div>
+                    <div class="header-nav">
+                        <ul class="nav-ul">
+<!--
+EOT;
+foreach($headernav as $key => $i){
+print <<<EOT
+-->
+                            <li><a href="">$i[content]</a>
+                                <ul>
+<!--
+EOT;
+foreach($headernavli as $key => $j){
+if($j[index] ==$i[id]){
+print <<<EOT
+-->
+                                    <li>
+                                        <a href="">
+                                            <div style="border-right: 0;">
+                                                <img src="$j[img]" alt="$j[p1]" width="160" height="110">
+                                            </div>
+                                            <p style="margin-top: 10px;">$j[p1]</p>
+                                            <p style="margin-top: 5px;color:#FF6700;">$j[p2]</p>
+                                        </a>
+                                    </li>
+<!--
+EOT;
+}
+}
+print <<<EOT
+-->
+                                </ul>
+                            </li>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+                            <li><a href="">服务</a></li>
+                            <li><a href="">社区</a></li>
+                        </ul>
+                    </div>
+                    <div class="header-search">
+                        <input  type="text" class="layui-input" onclick="place()" />
+                        <div>
+                            <i class="fa fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--   商品导航     -->
+        <div class="layui-main commodity">
+            <!--   侧边栏   -->
+            <ul class="commodity-left">
+<!--
+EOT;
+$n = 0;
+$z = 0;
+$ult='<ul>';
+$ulw = '</ul>';
+foreach($classCommodity as $key => $r){
+print <<<EOT
+-->
+
+                <li>
+                    <a href="">
+                        <p>$r[name]</p>
+                        <img src="img/right.png" width="25" height="25" alt="">
+                    </a>
+                    <div>
+
+
+                        $ult
+
+
+<!--
+EOT;
+$g ='123';
+foreach($commodityList as $c){
+if($c[fid]==$r[id]){
+$n=$n+1;
+$z=$z+1;
+print <<<EOT
+-->
+
+
+                            <li>
+                                <img src="$c[img]"  alt="" width="40" height="40">
+                                    <span style="margin-left: 10px;color: #333333;">$c[name]$g</span>
+                            </li>
+
+<!--
+EOT;
+if($n % 6 == 0){
+if($z % 24 != 0)
+print <<<EOT
+-->
+                $ulw
+                $ult
+
+<!--
+EOT;
+}
+}
+}
+$n =0;
+$z = 0;
+print <<<EOT
+-->
+
+                    </div>
+
+                </li>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+            </ul>
+
+            <!--   轮播图   -->
+            <div class="commodity-right">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+<!--
+EOT;
+foreach($commodityswiper as $key=>$rs){
+print <<<EOT
+-->
+
+                        <div class="swiper-slide">
+                            <img src="$rs" width="100%" height="100%" alt="">
+                        </div>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+
+                    </div>
+                    <div class="swiper-pagination swiper-pagination-white"></div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            <!--    商品轮播图区域下半部分    -->
+            <div class="commodity-bottom">
+                <div class="bot-left-box">
+
+<!--
+EOT;
+foreach($commoditybox as $key => $res){
+print <<<EOT
+-->
+                    <div>
+                        <a href="">
+                            <i class="fa $res[clas]"></i>
+                            <span>$res[content]</span>
+                        </a>
+                    </div>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+                </div>
+
+
+<!--
+EOT;
+foreach($commoditybot as $key => $res){
+print <<<EOT
+-->
+
+                <div class="imgbox"><a href="">
+                    <img src="$res" alt="" width="100%" height="100%"></a>
+                </div>
+
+<!--
+EOT;
+}
+print <<<EOT
+-->
+            </div>
+        </div>
+
+        <!--    小米抢购    -->
+        <div class="box">
+
+            <!--    小米闪购    -->
+            <div class="layui-main">
+                <div class="title">
+                    <p style="font-weight: lighter;">小米闪购</p>
+                    <div class="dbox">
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+                <!--      倒计时       -->
+                <div class="snapped">
+                    <p>00:00场</p> <br>
+                    <i class="fa fa fa-bolt"></i><br>
+                    <p style="font-size: 16px;font-weight: lighter;color: #6F6D6D;">距离结束还有</p>
+                    <div>
+                        <p class="boxp"><span></span></p> <p style="margin: 5px 5px 0 5px;color: #605751;">:</p>
+                        <p class="boxp"><span></span></p> <p style="margin: 5px 5px 0 5px;color: #605751;">:</p>
+                        <p class="boxp"><span></span></p>
+                    </div>
+                </div>
+                <!--      轮播图     -->
+                <div class="swiper">
+
+                    <div class="swiper-Gou">
+                        <div class="swiper-wrapper">
+
+<!--
+EOT;
+foreach($boobox as $key=> $res){
+print <<<EOT
+-->
+                            <div class="swiper-slide">
+<!--
+EOT;
+foreach($bobox as $keys=>$ress){
+if($ress[cid] == $res[id]){
+print <<<EOT
+-->
+
+                                <div class="sp-box">
+                                    <div>
+                                        <img src="$ress[img]" alt="" width="160" height="160">
+                                    </div>
+                                    <h3>$ress[h3]</h3>
+                                    <p class="desc">$ress[desc]</p>
+                                    <p class="price">
+                                        <span>$ress[price]</span>元
+                                        <del style="color: #b0b0b0;">$ress[del]</del>
+                                    </p>
+                                </div>
+<!--
+EOT;
+}
+}
+print  <<<EOT
+-->
+                            </div>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+                        </div>
+                     </div>
+                 </div>
+             </div>
+        </div>
+
+        <!--    详细内容    -->
+        <div class="content">
+                <!--   广告图片    -->
+                <div class="layui-main home-banner-box" style="padding: 20px 0" >
+                    <a href="">
+                        <img
+                                src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/785efa3a7e6067c08e7e0c1142e451d3.jpg?thumb=1&w=1226&h=120&f=webp&q=90" alt="" width="100%" height="120">
+                    </a>
+                </div>
+                <!--   商品分类 - 手机    -->
+                <div class="layui-main">
+                    <div class="title">
+                        <p style="font-weight: lighter;">手机</p>
+                        <a href="">
+                            <div>
+                                <p>查看全部</p>
+                                <i class="fa fa-chevron-circle-right"></i>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="contaner">
+                        <div class="left tx">
+                            <img src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/574c6643ab91c6618bfb2d0e2c761d0b.jpg?thumb=1&w=234&h=614&f=webp&q=90" alt="">
+                        </div>
+                        <!--         right           -->
+                        <div class="right">
+<!--
+EOT;
+foreach($phone as $key => $c){
+print <<<EOT
+-->
+                            <div class="right-box tx">
+                                <a href="">
+                                    <div>
+                                        <img src="$c[img]" alt="">
+                                    </div>
+                                    <h3>
+                                        $c[h1]
+                                    </h3>
+                                    <p class="desc">$c[p1]</p>
+                                    <p class="price">
+                                        $c[p2]
+                                        <del>$c[del]</del>
+                                    </p>
+                                </a>
+                            </div>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+                        </div>
+                    </div>
+
+                </div>
+
+
+<!--
+EOT;
+foreach($content as $ket => $i){
+print <<<EOT
+-->
+                <!--   广告图片    -->
+                <div class="layui-main home-banner-box">
+                    <a href="">
+                        <img src="$i[img]" alt="" width="100%" height="120">
+                    </a>
+                </div>
+                <!--   商品分类 -->
+                <div class="layui-main">
+                    <div class="title munu">
+                        <p style="font-weight: lighter;">$i[title]</p>
+                        <ul>
+                            <li style="cursor: pointer;" class="one li1" >$i[li1]</li>
+                            <li style="cursor: pointer;" class="li2" >$i[li2]</li>
+<!--
+EOT;
+    if($i[li3] !=''){
+print <<<EOT
+-->
+                            <li style="cursor: pointer;" class="li3" >$i[li3]</li>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+                        </ul>
+                    </div>
+
+                    <div class="contaner">
+                        <div class="mumu">
+                            <div class="right-box tx" id="">
+                                <a href="">
+                                    <img
+                                            src="$i[boximg1]" alt="">
+                                </a>
+                            </div>
+                            <div class="right-box tx">
+                                <a href="">
+                                    <img src="$i[boximg2]" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <!--         right           -->
+                        <div class="right">
+<!--
+EOT;
+foreach($contentright as $c){
+    if($c[cid] == $i[id]){
+print <<<EOT
+-->
+                            <div class="right-box tx">
+                                <a href="">
+                                    <div>
+                                        <img src="$c[img]" alt="">
+                                    </div>
+                                    <h3>
+                                        $c[h3]
+                                    </h3>
+                                    <p class="desc">$c[desc]</p>
+                                    <p class="price">
+                                        <span>$c[price]</span>
+                                        <del>$c[del]</del>
+                                    </p>
+                                </a>
+                            </div>
+<!--
+EOT;
+}
+}
+print <<<EOT
+-->
+
+<!--
+EOT;
+foreach($contentrightbox as $o){
+if($o[bid] == $i[id]){
+print <<<EOT
+-->
+                            <div class="right-box-one">
+                                <div class="right-box-top tx">
+                                    <div style="padding: 0 10px 0 30px;">
+                                        <p>$o[p1]</p>
+                                        <span style="color: #ff6700;">$o[span1]</span>
+                                    </div>
+                                    <div style="display: flex;align-items: center">
+                                        <img src="$o[img]" alt="">
+                                    </div>
+                                </div>
+
+
+                                <div class="right-box-top tx" style="margin-top: 9px;">
+                                    <div style="padding: 0 10px 0 30px;">
+                                        <p style="font-size: 19px;font-weight: lighter;margin-top: 50px">浏览更多</p>
+                                        <p style="margin-top: -8px;color: #858585;">热门</p>
+                                    </div>
+                                    <div style="display: flex;align-items: center;justify-content: center;">
+                                        <i class="fa fa-chevron-circle-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+<!--
+EOT;
+}
+}
+print <<<EOT
+-->
+                        </div>
+
+                        <div class="right-two">
+<!--
+EOT;
+foreach($contentrighttwo as $e){
+    if($e[cid] == $i[id]){
+print <<<EOT
+-->
+                            <div class="right-box tx">
+                                <a href="">
+                                    <div>
+                                        <img src="$e[img]" alt="">
+                                    </div>
+                                    <h3>
+                                        $e[h3]
+                                    </h3>
+                                    <p class="desc">$e[desc]</p>
+                                    <p class="price">
+                                        <span>$e[price]</span>
+                                        <del>$e[del]</del>
+                                    </p>
+                                </a>
+                            </div>
+<!--
+EOT;
+}
+}
+print <<<EOT
+-->
+<!--
+EOT;
+foreach($contentrighttwobox as $two){
+if($two[bid] == $i[id]){
+print <<<EOT
+-->
+                            <div class="right-box-one">
+<!--
+EOT;
+if($two[p1] != ''){
+print <<<EOT
+-->
+                                <div class="right-box-top tx">
+                                    <div style="padding: 0 10px 0 30px;">
+                                        <p>
+                                            $two[p1]
+                                        </p>
+                                        <span style="color: #ff6700;">$two[span]</span>
+                                    </div>
+                                    <div style="display: flex;align-items: center">
+                                        <img src="$two[img]" alt="">
+                                    </div>
+                                </div>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+                                <div class="right-box-top tx" style="$two[style]">
+                                    <div style="padding: 0 10px 0 30px;">
+                                        <p style="font-size: 19px;font-weight: lighter;margin-top: 50px">浏览更多</p>
+                                        <p style="margin-top: -8px;color: #858585;">$two[p2]</p>
+                                    </div>
+                                    <div style="display: flex;align-items: center;justify-content: center;">
+                                        <i class="fa fa-chevron-circle-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+<!--
+EOT;
+}
+}
+print <<<EOT
+-->
+                        </div>
+
+                        <div class="right-three">
+<!--
+EOT;
+foreach($contentrighthree as $t){
+    if($i[li3] != ''){
+        if($t[cid] == $i[id]){
+print <<<EOT
+-->
+                            <div class="right-box tx">
+                                <a href="">
+                                    <div>
+                                        <img src="$t[img]" alt="">
+                                    </div>
+                                    <h3>
+                                        $t[h3]
+                                    </h3>
+                                    <p class="desc">$t[desc]</p>
+                                    <p class="price">
+                                        <span>$t[price]</span>
+                                        <del>$t[del]</del>
+                                    </p>
+                                </a>
+                            </div>
+<!--
+EOT;
+}
+}
+}
+print <<<EOT
+-->
+<!--
+EOT;
+foreach($contentrighthreebox as $three){
+    if($three[bid] == $i[id]){
+print <<<EOT
+-->
+                            <div class="right-box-one">
+<!--
+EOT;
+if($three[p1] != ''){
+print <<<EOT
+-->
+                                <div class="right-box-top tx">
+                                    <div style="padding: 0 10px 0 30px;">
+                                        <p>
+                                            $three[p1]
+                                        </p>
+                                        <span style="color: #ff6700;">$three[span]</span>
+                                    </div>
+                                    <div style="display: flex;align-items: center">
+                                        <img src="$three[img]" alt="">
+                                    </div>
+                                </div>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+                                <div class="right-box-top tx" style="$three[style]">
+                                    <div style="padding: 0 10px 0 30px;">
+                                        <p style="font-size: 19px;font-weight: lighter;margin-top: 50px">浏览更多</p>
+                                        <p style="margin-top: -8px;color: #858585;">$three[p2]</p>
+                                    </div>
+                                    <div style="display: flex;align-items: center;justify-content: center;">
+                                        <i class="fa fa-chevron-circle-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+<!--
+EOT;
+}
+}
+print <<<EOT
+-->
+                        </div>
+
+                    </div>
+
+                </div>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+
+                <!--   广告图片    -->
+                <div class="layui-main home-banner-box">
+                    <a href="">
+                        <img src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/88e35cffc82cd98cd53172460067af17.jpg?thumb=1&w=1226&h=120&f=webp&q=90" alt="" width="100%" height="120">
+                    </a>
+                </div>
+
+                <!--   视频    -->
+                <div class="layui-main">
+                    <div class="title">
+                        <p style="font-weight: lighter;">视频</p>
+                        <a href="">
+                            <div>
+                                <p>查看全部</p>
+                                <i class="fa fa-chevron-circle-right"></i>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="movie">
+<!--
+EOT;
+foreach($movie as $m){
+print <<<EOT
+-->
+                        <div class="movie-box">
+                            <div>
+                                <img src="$m[img]"></i>
+                            </div>
+                            <p>
+                                $m[p]
+                            </p>
+                        </div>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+                    </div>
+                </div>
+            </div>
+
+        <!--   footer底部     -->
+        <div class="footer">
+            <div class="layui-main" >
+                <div class="footer-top">
+                    <div class="service">
+                        <ul>
+<!--
+EOT;
+foreach($service as $s){
+print <<<EOT
+-->
+                            <li><a href=""> <i class="fa $s[i]"></i> $s[a]</a></li>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+                        </ul>
+                    </div>
+                    <div class="links">
+                        <div>
+
+<!--
+EOT;
+foreach($links as $l){
+print <<<EOT
+-->
+                            <dl>
+                                <dt>$l[dt]</dt>
+                                <dd><a href="">$l[dd1]</a></dd>
+                                <dd><a href="">$l[dd2]</a></dd>
+                                <dd><a href="">$l[dd3]</a></dd>
+                                <dd><a href="">$l[dd4]</a></dd>
+                                <dd><a href="">$l[dd5]</a></dd>
+                            </dl>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+                        </div>
+                        <div>
+                            <p>400-100-5678</p>
+                            <p>8:00-18:00（仅收市话费）</p>
+                            <a class="bock" href="">
+                                <i class="fa fa-comment-o" ></i>人工客服
+                            </a><br>
+                            <p>关注小米: <a href=""><i class="fa fa-weibo"></i></a>
+                                <a href=""><i class="fa fa-wechat"></i></a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bototm">
+                    <p class="sites">
+<!--
+EOT;
+foreach($sites as $s){
+print <<<EOT
+-->
+                        <a href="">$s</a>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+                    </p>
+                    <p style="margin-top: 10px">
+                        <a href="">@mi.com</a> 京ICP证110507号 <a href="">京ICP备10046444号</a>
+                        <a href="">京公网安备11010802020134号</a> <a href="">京网文[2020]0276-042号</a> <br>
+                        <a href="">（京）网械平台备字（2018）第00005号</a> <a href="">互联网药品信息服务资格证 (京)-非经营性-2014-0090</a> <a
+                            href="">营业执照</a> <a href="">医疗器械质量公告</a><br>
+                        <a href="">增值电信业务许可证</a> <a href=""> 网络食品经营备案（京）【2018】WLSPJYBAHF-12
+                    </a> <a href="">食品经营许可证</a> <br>
+                        <a href="">
+                            违法和不良信息举报电话：185-0130-1238 </a> <a href="">知识产权侵权投诉</a>
+                        &nbsp;本网站所列数据，除特殊说明，所有数据均出自我司实验室测试
+                    </p>
+                    <div>
+                        <a href=""><img src="//i1.mifile.cn/f/i/17/site/truste.png" alt=""></a>
+                        <a href=""><img src="//s01.mifile.cn/i/v-logo-2.png" alt=""></a>
+                        <a href=""><img src="//s01.mifile.cn/i/v-logo-1.png" alt=""></a>
+                        <a href=""><img src="//i8.mifile.cn/b2c-mimall-media/ba10428a4f9495ac310fd0b5e0cf8370.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--    侧边导航栏    -->
+        <ul class="celan">
+            <li id="xf">
+                <i class="fa fa-mobile" style="font-size: 40px;"></i><br>
+                <span>手机APP</span>
+                <div id="box">
+                    <img src="https://i8.mifile.cn/b2c-mimall-media/93650133310ec1c385487417a472a26c.png" alt=""
+                         width="100%" height="100%">
+                    <span>
+                    下载APP 0元领抽纸
+                </span>
+                </div>
+            </li>
+<!--
+EOT;
+foreach($celan as $c){
+print <<<EOT
+-->
+            <li id="$c[id]">
+                <i class="fa $c[i]"></i><br>
+                <span>$c[span]</span>
+            </li>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+
+
+        </ul>
+
+        <script src="plugin/jquery-2.1.1.js"></script>
+        <script src="js/main.js"></script>
+        <script src="plugin/swiper.min.js"></script>
+        <script type="text/javascript">
+
+            var swiper = new Swiper('.swiper-container', {
+                autoplay:true,
+                loop: true,
+                effect:'fade',
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+            var swiper = new Swiper('.swiper-Gou', {
+                autoplay:{
+                delay:2000,
+                    stopOnLastSlide:false,//如果设置为true，当切换到最后一个slide时停止自动切换
+                    disableOnInteraction:true
+                },
+                loop:true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+        </script>
+    </body>
+
+</html>
+<!--
+EOT;
+?>
+-->
